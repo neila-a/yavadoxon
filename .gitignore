@@ -16,7 +16,6 @@ coverage/
 *.swp
 *.swo
 .idea/
-.vscode/
 *.log
 
 # Optional: Dependency directories

@@ -1,0 +1,14 @@
+{
+  "name": "hearts-of-js",
+  "version": "0.1.0",
+  "description": "Convert Paradox language to javascript objects. Tested for Hearts of Iron IV.",
+  "scripts": {
+  },
+  "keywords": ["Paradox", "Paradox Interactive", "parser", "Hearts of Iron", "Hearts of Iron IV"],
+  "author": {
+    "name": "Neila",
+    "email": "neilaspace@outlook.com",
+    "url": "https://neilasite.netlify.app/"
+  },
+  "license": "GPL-3.0-or-later"
+}

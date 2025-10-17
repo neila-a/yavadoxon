@@ -1,0 +1,8 @@
+a = {
+	str = "String \\ \"queue\" / stringG"
+	arr = { 1 1 4 5 1 4 }
+	obj = {
+		key = value1
+	}
+	rgb = rgb { 255 255 255 }
+}

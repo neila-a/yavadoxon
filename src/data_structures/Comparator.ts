@@ -2,7 +2,7 @@ export const compareSigns: ["<=", ">=", "==", "<", ">"] = ["<=", ">=", "==", "<"
 export type compareSign = typeof compareSigns[number];
 export default class Comparator {
     mode: compareSign = "==";
-    value: string = "";
+    value = "";
     constructor(mode: compareSign, value: string) {
         this.mode = mode;
         this.value = value;

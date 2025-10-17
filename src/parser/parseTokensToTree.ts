@@ -40,13 +40,11 @@ export default function parseTokensToTree(tokens: string[]) {
     }
     let at: positions = positions.left;
     for (const token of tokens) {
-        // 开始对象
         if (token === "{") {
+            // 开始对象
             at = positions.left;
-        }
-
-        // 结束对象
-        else if (token === "}") {
+        } else if (token === "}") {
+            // 结束对象
             if (at === positions.middle) {
                 workingArray.push(working[working.length - 1]);
                 working.pop();
@@ -57,47 +55,36 @@ export default function parseTokensToTree(tokens: string[]) {
             }
             working.pop();
             at = positions.left;
-        }
-
-
-        // 键
-        else if (at === positions.left) {
+        } else if (at === positions.left) {
+            // 键
             working.push(token);
             at = positions.middle;
-        }
-
-        // 中间符号
-        else if (at === positions.middle) {
-            // 键值对
+        } else if (at === positions.middle) {
+            // 中间符号
             if (token === "=") {
+                // 键值对
                 at = positions.right;
-            }
-            else if (compareSigns.includes(token as compareSign)) {
+            } else if (compareSigns.includes(token as compareSign)) {
+                // 比较器
                 compareMode = token as compareSign;
                 at = positions.right;
-            }
-
-            // 数组
-            else {
+            } else {
+                // 数组
                 workingArray.push(working[working.length - 1], token);
                 working.pop();
                 at = positions.left;
             }
-        }
-
-        // 值
-        else if (at === positions.right) {
-            // rgb
+        } else if (at === positions.right) {
+            // 值
             if (token === "rgb") {
+                // rgb
                 workingArray = new RGBvalue();
-            }
-            else if (compareMode !== false) {
+            } else if (compareMode !== false) {
                 modifyObjectWithWorking(() => new Comparator(compareMode as compareSign, token));
                 compareMode = false;
                 working.pop();
                 at = positions.left;
-            }
-            else {
+            } else {
                 modifyObjectWithWorking(() => token);
                 working.pop();
                 at = positions.left;

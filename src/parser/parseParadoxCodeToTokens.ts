@@ -16,47 +16,35 @@ export default function parseParadoxCodeToTokens(code: string) {
 
         // 字符串
         if (char === "\"") {
-            // 字符串内的转义字符
             if (last3chars[1] === "\\" && last3chars[0] !== "\\") {
+                // 字符串内的转义字符
                 workingToken += char;
-            }
-
-            // 开始字符串
-            else if (inString === false) {
+            } else if (inString === false) {
+                // 开始字符串
                 inString = true;
-            }
-
-            // 结束字符串
-            else {
+            } else {
+                // 结束字符串
                 tokens.push("\"" + workingToken + "\"");
                 workingToken = "";
                 inString = false;
             }
         } else if (inString) {
             workingToken += char;
-        }
-
-
-        // 忽略的字符
-        else if (char === " " || char === "\t") {
+        } else if (char === " " || char === "\t") {
+            // 忽略的字符
             tokens.push(workingToken);
             workingToken = "";
-        }
-
-
-        // 注释
-        else if (char === "#") {
+        } else if (char === "#") {
+            // 注释
             inComment = true;
         } else if (char === "\n") {
             tokens.push(workingToken);
             workingToken = "";
             inComment = false;
         } else if (inComment) {
-        }
-
-
-        // 普通字符
-        else {
+            /* empty */
+        } else {
+            // 普通字符
             workingToken += char;
         }
     }

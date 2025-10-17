@@ -1,12 +1,17 @@
 import Comparator from "./Comparator";
 import RGBvalue from "./RGBvalue";
 export type TreeValue = string | Comparator | RGBvalue | Tree;
+// eslint-disable-next-line @typescript-eslint/no-namespace
+namespace JSONparser {
+    export const all = (json: string) => JSON.parse(json);
+    export const first = (entry: [string, TreeValue]) => [JSON.parse(entry[0]), entry[1]];
+}
 /**
  * 相当于MultiValueMap
  */
 export default class Tree {
     map = new Map<string, TreeValue>();
-    [Symbol.toStringTag]: string = "Tree";
+    [Symbol.toStringTag] = "Tree";
 
     /**
      * 获取值
@@ -15,14 +20,19 @@ export default class Tree {
      */
     get(key: string, index = 0): TreeValue | TreeValue[] | undefined {
         switch (index) {
-            case -1:
+            case -1: {
                 const values: TreeValue[] = [];
-                Array.from(this.map.entries()).map(entry => [JSON.parse(entry[0]), entry[1]]).forEach(([keyWithIndex, value]) => keyWithIndex[0] === key && values.push(value));
+                Array.from(this.map.entries()).map(JSONparser.first).forEach(([keyWithIndex, value]) => keyWithIndex[0] === key && values.push(value));
                 return values;
-            default:
+            }
+            default: {
                 let value: TreeValue | undefined = undefined;
-                Array.from(this.map.entries()).map(entry => [JSON.parse(entry[0]), entry[1]]).forEach(([keyWithIndex, gotValue]) => keyWithIndex[0] === key && keyWithIndex[1] === index && (value = gotValue));
+                Array
+                    .from(this.map.entries())
+                    .map(JSONparser.first)
+                    .forEach(([keyWithIndex, gotValue]) => keyWithIndex[0] === key && keyWithIndex[1] === index && (value = gotValue));
                 return value;
+            }
         }
     }
     /**
@@ -54,16 +64,21 @@ export default class Tree {
     delete(key: string, index = -1) {
         switch (index) {
             case -1:
-                Array.from(this.map.keys()).map(json => JSON.parse(json)).forEach(got => got[0] === key && this.map.delete(JSON.stringify(got)));
+                Array.from(this.map.keys()).map(JSONparser.all).forEach(got => got[0] === key && this.map.delete(JSON.stringify(got)));
                 break;
             default:
-                Array.from(this.map.keys()).map(json => JSON.parse(json)).forEach(got => got[0] === key && got[1] === index && this.map.delete(JSON.stringify(got)));
+                Array.from(this.map.keys()).map(JSONparser.all).forEach(got => got[0] === key && got[1] === index && this.map.delete(JSON.stringify(got)));
                 break;
         }
     }
     entries() {
-        return Array.from(this.map.entries()).map(entry => [JSON.parse(entry[0]), entry[1]]).map(([keyWithIndex, value]) => [keyWithIndex[0], value] as [string, TreeValue])[Symbol.iterator]();
+        return Array
+            .from(this.map.entries())
+            .map(JSONparser.first)
+            .map(([keyWithIndex, value]) => [keyWithIndex[0], value] as [string, TreeValue])[Symbol.iterator]();
     }
+    // thisArg必须为any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     forEach(callbackfn: (value: TreeValue, key: string, tree: Tree) => void, thisArg?: any) {
         return this.map.forEach((value, keyWithIndex) => callbackfn(value, JSON.parse(keyWithIndex)[0], this), thisArg);
     }
@@ -80,11 +95,11 @@ export default class Tree {
      */
     valueCount(key: string) {
         let count = 0;
-        Array.from(this.map.keys()).map(json => JSON.parse(json)).forEach(got => got[0] === key && count++);
+        Array.from(this.map.keys()).map(JSONparser.all).forEach(got => got[0] === key && count++);
         return count;
     }
     keys() {
-        return Array.from(this.map.keys()).map(json => JSON.parse(json)).map(keyWithIndex => keyWithIndex[0]);
+        return Array.from(this.map.keys()).map(JSONparser.all).map(keyWithIndex => keyWithIndex[0]);
     }
     values() {
         return this.map.values();

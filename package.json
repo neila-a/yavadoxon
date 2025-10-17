@@ -3,12 +3,25 @@
   "version": "0.1.0",
   "description": "Convert Paradox language to javascript objects. Tested for Hearts of Iron IV.",
   "scripts": {
+    "lint": "eslint --fix"
   },
-  "keywords": ["Paradox", "Paradox Interactive", "parser", "Hearts of Iron", "Hearts of Iron IV"],
+  "keywords": [
+    "Paradox",
+    "Paradox Interactive",
+    "parser",
+    "Hearts of Iron",
+    "Hearts of Iron IV"
+  ],
   "author": {
     "name": "Neila",
     "email": "neilaspace@outlook.com",
     "url": "https://neilasite.netlify.app/"
   },
-  "license": "GPL-3.0-or-later"
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.1"
+  }
 }

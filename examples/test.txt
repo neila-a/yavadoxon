@@ -3,6 +3,8 @@ a = {
 	arr = { 1 1 4 5 1 4 }
 	obj = {
 		key = value1
+		key = value2
 	}
-	rgb = rgb { 255 255 255 }
+	color = rgb { 191 919 810 }
+	compare > 3
 }

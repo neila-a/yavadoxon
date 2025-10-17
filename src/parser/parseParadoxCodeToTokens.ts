@@ -1,4 +1,4 @@
-import nowEmptyFilter from "../utils/nowEmptyFilter";
+import noEmptyFilter from "../utils/noEmptyFilter";
 /**
  * 分解token
  */
@@ -49,6 +49,6 @@ export default function parseParadoxCodeToTokens(code: string) {
         }
     }
     tokens.push(workingToken); // 最后一个token
-    tokens = tokens.filter(nowEmptyFilter); // 过滤空token
+    tokens = tokens.filter(noEmptyFilter); // 过滤空token
     return tokens;
 }

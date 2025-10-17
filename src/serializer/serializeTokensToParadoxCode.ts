@@ -1,4 +1,4 @@
-import nowEmptyFilter from "../utils/nowEmptyFilter";
+import noEmptyFilter from "../utils/noEmptyFilter";
 import {
     compareSigns
 } from "../data_structures/Comparator";
@@ -43,7 +43,7 @@ export default function serializeTokensToParadoxCode(tokens: string[]) {
     }
     return tokensWithIndent
         .map(stringOrArray => Array.isArray(stringOrArray) ? stringOrArray.join("") : stringOrArray + " ")
-        .filter(nowEmptyFilter)
+        .filter(noEmptyFilter)
         .join("")
         .split("\n")
         .map(line => line.trimEnd())

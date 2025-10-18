@@ -3,15 +3,13 @@ import parseParadoxCodeToTokens from "./parser/parseParadoxCodeToTokens";
 import parseTokensToTree from "./parser/parseTokensToTree";
 import serializeTokensToParadoxCode from "./serializer/serializeTokensToParadoxCode";
 import serializeTreeToTokens from "./serializer/serializeTreeToTokens";
-function convert(code: string): Tree;
-function convert(tree: Tree): string;
-function convert(input: string | Tree) {
-    if (typeof input === "string") {
-        const tokens = parseParadoxCodeToTokens(input);
-        return parseTokensToTree(tokens);
-    } else if (typeof input === "object" && input instanceof Tree) {
-        const tokens = serializeTreeToTokens(input);
-        return serializeTokensToParadoxCode(tokens);
-    }
+import compose from "compose-function";
+interface convertFunction {
+    (input: string): Tree
+    (input: Tree): string
 }
+const convert: convertFunction = input => (typeof input === "string"
+    ? compose(parseParadoxCodeToTokens, parseTokensToTree)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    : compose(serializeTreeToTokens, serializeTokensToParadoxCode))(input) as any;
 export default convert;

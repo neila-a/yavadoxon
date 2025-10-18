@@ -24,7 +24,9 @@
     "eslint": "^9.37.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.1"
+    "typescript-eslint": "^8.46.1",
+    "@types/compose-function": "^0.0.33",
+    "compose-function": "^3.0.3"
   },
   "exports": {
     ".": {

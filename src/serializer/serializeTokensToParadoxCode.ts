@@ -9,7 +9,7 @@ export default function serializeTokensToParadoxCode(tokens: string[]) {
     let last4Tokens: [string, string, string, string] = ["", "", "", ""];
     let inArray = false;
     const breakLine = () => tokensWithIndent.push(["\n"].concat(Array(indent).fill("\t")));
-    for (const token of tokens) {
+    tokens.forEach(token => {
         tokensWithIndent.push(token);
         last4Tokens = [last4Tokens[1], last4Tokens[2], last4Tokens[3], token];
 
@@ -40,7 +40,7 @@ export default function serializeTokensToParadoxCode(tokens: string[]) {
             lastIndentArray.fill(""); // 移除之前的一个换行
             inArray = true;
         }
-    }
+    });
     return tokensWithIndent
         .map(stringOrArray => Array.isArray(stringOrArray) ? stringOrArray.join("") : stringOrArray + " ")
         .filter(noEmptyFilter)

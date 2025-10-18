@@ -11,7 +11,7 @@ export default function parseParadoxCodeToTokens(code: string) {
      * 例如`\\"`
      */
     let last3chars: [string, string, string] = ["", "", ""];
-    for (const char of code) {
+    Array.from(code).forEach(char => {
         last3chars = [last3chars[1], last3chars[2], char];
 
         // 字符串
@@ -47,7 +47,7 @@ export default function parseParadoxCodeToTokens(code: string) {
             // 普通字符
             workingToken += char;
         }
-    }
+    });
     tokens.push(workingToken); // 最后一个token
     tokens = tokens.filter(noEmptyFilter); // 过滤空token
     return tokens;

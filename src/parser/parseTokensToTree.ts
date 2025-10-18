@@ -39,7 +39,7 @@ export default function parseTokensToTree(tokens: string[]) {
         right
     }
     let at: positions = positions.left;
-    for (const token of tokens) {
+    tokens.forEach(token => {
         if (token === "{") {
             // 开始对象
             at = positions.left;
@@ -90,6 +90,6 @@ export default function parseTokensToTree(tokens: string[]) {
                 at = positions.left;
             }
         }
-    }
+    });
     return tree;
 }

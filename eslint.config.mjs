@@ -126,10 +126,6 @@ export default defineConfig(
                 "max": 2
             }
         ],
-        "multiline-ternary": [
-            "warn",
-            "never"
-        ],
         "new-parens": "warn",
         "no-multi-spaces": "warn",
         "no-multiple-empty-lines": "warn",

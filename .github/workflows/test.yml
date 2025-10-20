@@ -1,0 +1,16 @@
+name: Test
+run-name: Test
+on: [push]
+jobs:
+    Test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository code
+              uses: actions/checkout@v5
+            - uses: actions/setup-node@v6
+              with:
+                  node-version: 24
+            - name: Install
+              run: npm install
+            - name: Run tests
+              run: npm run test

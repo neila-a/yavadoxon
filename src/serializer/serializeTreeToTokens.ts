@@ -6,7 +6,8 @@ const serializeTreeToTokens: (tree: Tree) => string[] = tree => Array
     .map(([key, value]) => typeof value === "string" ? [key, "=", value]
         : value instanceof Comparator ? [key, value.mode, value.value]
             : value instanceof RGBvalue ? [key, "=", "rgb", "{", ...value, "}"]
-                : value instanceof Tree ? [key, "=", "{", ...serializeTreeToTokens(value).flat(), "}"] : [] as string[]
+                : value instanceof Array ? [key, "=", "{", ...value, "}"]
+                    : value instanceof Tree ? [key, "=", "{", ...serializeTreeToTokens(value).flat(), "}"] : [] as string[]
     )
     .flat();
 export default serializeTreeToTokens;

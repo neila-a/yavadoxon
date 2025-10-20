@@ -9,7 +9,7 @@ interface convertFunction {
     (input: Tree): string
 }
 const convert: convertFunction = input => (typeof input === "string"
-    ? compose(parseParadoxCodeToTokens, parseTokensToTree)
+    ? compose(parseTokensToTree, parseParadoxCodeToTokens)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    : compose(serializeTreeToTokens, serializeTokensToParadoxCode))(input) as any;
+    : compose(serializeTokensToParadoxCode, serializeTreeToTokens))(input as string & Tree) as any;
 export default convert;

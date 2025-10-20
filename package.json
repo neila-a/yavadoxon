@@ -4,7 +4,8 @@
   "description": "Convert Paradox language to javascript objects. Tested for Hearts of Iron IV.",
   "scripts": {
     "lint": "eslint --fix",
-    "build": "tsup"
+    "build": "tsup",
+    "test": "esbuild tests/verifyEqual.ts  --bundle --platform=node --format=esm | node"
   },
   "keywords": [
     "Paradox",
@@ -21,12 +22,13 @@
   "license": "LGPL-3.0-or-later",
   "devDependencies": {
     "@eslint/js": "^9.37.0",
+    "@types/compose-function": "^0.0.33",
+    "@types/node": "^24.8.1",
+    "compose-function": "^3.0.3",
     "eslint": "^9.37.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.1",
-    "@types/compose-function": "^0.0.33",
-    "compose-function": "^3.0.3"
+    "typescript-eslint": "^8.46.1"
   },
   "exports": {
     ".": {

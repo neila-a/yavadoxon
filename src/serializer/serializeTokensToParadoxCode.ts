@@ -1,8 +1,7 @@
 import noEmptyFilter from "../utils/noEmptyFilter";
 import {
-    compareSigns
+    signs
 } from "../data_structures/Comparator";
-const signs = ["=", "= rgb", ...compareSigns];
 export default function serializeTokensToParadoxCode(tokens: string[]) {
     const tokensWithIndent: (string | string[])[] = [];
     let indent = 0;
@@ -25,7 +24,12 @@ export default function serializeTokensToParadoxCode(tokens: string[]) {
             if (!inArray) {
                 // 缩进 item
                 // eslint-disable-next-line no-magic-numbers
-                const lastIndentArray = tokensWithIndent[tokensWithIndent.length - 2] as string[];
+                let lastIndentArray = tokensWithIndent[tokensWithIndent.length - 2] as string[];
+                if (tokensWithIndent[tokensWithIndent.length - 2] === "=") {
+                    debugger;
+                    lastIndentArray = tokensWithIndent[tokensWithIndent.length - 3] as string[];
+                }
+                debugger;
                 lastIndentArray.pop(); // 移除之前的一个缩进
             }
             breakLine();

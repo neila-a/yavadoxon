@@ -1,6 +1,7 @@
 a = {
 	str = "String \\ \"queue\" / stringG"
 	arr = { 1 1 4 5 1 4 }
+	singlearray = { 5201314 }
 	obj = {
 		key = value1
 		key = value2

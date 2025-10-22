@@ -1,6 +1,6 @@
 import Comparator from "./Comparator";
 import RGBvalue from "./RGBvalue";
-export type TreeValue = string | Comparator | RGBvalue | Tree;
+export type TreeValue = string | Comparator | RGBvalue | Tree | string[];
 // eslint-disable-next-line @typescript-eslint/no-namespace
 namespace JSONparser {
     export const all = (json: string) => JSON.parse(json);

@@ -1,8 +1,7 @@
 import Tree from "./data_structures/Tree";
 import parseParadoxCodeToTokens from "./parser/parseParadoxCodeToTokens";
 import parseTokensToTree from "./parser/parseTokensToTree";
-import serializeTokensToParadoxCode from "./serializer/serializeTokensToParadoxCode";
-import serializeTreeToTokens from "./serializer/serializeTreeToTokens";
+import serializeTreeToParadoxCode from "./serializeTreeToParadoxCode";
 import compose from "compose-function";
 interface convertFunction {
     (input: string): Tree
@@ -11,5 +10,5 @@ interface convertFunction {
 const convert: convertFunction = input => (typeof input === "string"
     ? compose(parseTokensToTree, parseParadoxCodeToTokens)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    : compose(serializeTokensToParadoxCode, serializeTreeToTokens))(input as string & Tree) as any;
+    : serializeTreeToParadoxCode)(input as string & Tree) as any;
 export default convert;

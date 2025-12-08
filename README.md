@@ -1,5 +1,8 @@
 # Yavadoxon
 
+> **Important**  
+> 这个项目已进入维护模式，仅接收可能的安全更新，因为有现有的、更好的选择：https://github.com/nickbabcock/jomini
+
 ## 来源
 
 JavaScript: Java <- 梵语 Yava

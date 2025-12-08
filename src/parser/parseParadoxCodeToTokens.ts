@@ -30,7 +30,7 @@ export default function parseParadoxCodeToTokens(code: string) {
             }
         } else if (inString) {
             workingToken += char;
-        } else if (char === " " || char === "\t") {
+        } else if (char === " " || char === "\t" || char === "\r") {
             // 忽略的字符
             tokens.push(workingToken);
             workingToken = "";

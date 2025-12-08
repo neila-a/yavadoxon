@@ -1,0 +1,16 @@
+{
+  "name": "read_ship_config",
+  "version": "0.1.0",
+  "description": "A simple example for using Yavadoxon to read ship configuration files from HOI4.",
+  "main": "index.ts",
+  "dependencies": {
+    "yavadoxon": "workspace:../.."
+  },
+  "type": "module",
+  "scripts": {
+    "test": "esbuild index.ts --bundle --platform=node --format=esm --outfile=dist/out.js && node dist/out.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

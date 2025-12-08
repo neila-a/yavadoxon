@@ -35,6 +35,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./data_structures/Tree": {
+      "types": "./dist/data_structures/Tree.d.ts",
+      "import": "./dist/data_structures/Tree.mjs",
+      "require": "./dist/data_structures/Tree.js"
     }
   }
 }

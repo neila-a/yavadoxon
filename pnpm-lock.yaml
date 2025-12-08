@@ -33,6 +33,12 @@ importers:
         specifier: ^8.46.1
         version: 8.46.1(eslint@9.37.0)(typescript@5.9.3)
 
+  examples/read_ship_config:
+    dependencies:
+      yavadoxon:
+        specifier: workspace:../..
+        version: link:../..
+
 packages:
 
   '@esbuild/aix-ppc64@0.25.11':
